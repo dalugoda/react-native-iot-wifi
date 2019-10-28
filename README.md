@@ -4,7 +4,7 @@ This library was written to config iot devices. With iOS 11 Apple introduced NEH
 
 ## 1.0.1
 * iOS: added functionality for error handling when wifi connection fails.
-* iOS: RN 0.61.2 required podspec
+* iOS: RN 0.61.2 required podspec.
 
 ## 1.0.0
 * Optional Force binding to a Wifi on both iOS and Android platforms
