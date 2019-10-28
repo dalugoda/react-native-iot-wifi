@@ -1,4 +1,4 @@
-declare module 'react-native-iot-wifi' {
+declare module '@josectobar/react-native-iot-wifi' {
   // tslint:disable:no-namespace
   type ConnectArgs =
     | [string, (error: string) => void]
