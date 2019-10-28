@@ -2,6 +2,12 @@
 Wifi configuration.
 This library was written to config iot devices. With iOS 11 Apple introduced NEHotspotConfiguration class for wifi configuration. Library supports same functionality on ios and android.
 
+## 1.0.32
+
+* added missing iOS connection error handling.
+* added missing podspec file dependency from package.json.
+
+
 ## 1.0.3
 
 I tested the library with RN v 0.61.2 for both iOS and Android and was able to fix conflicts related to the dependencies and auto linking with iOS. 
