@@ -1,6 +1,6 @@
 {
-  "name": "react-native-iot-wifi",
-  "version": "1.0.0",
+  "name": "@josectobar/react-native-iot-wifi",
+  "version": "1.0.1",
   "description": "Connect to WiFi with React Native on Android and iOS.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tadasr/react-native-iot-wifi.git"
+    "url": "git+https://github.com/josectobar/react-native-iot-wifi.git"
   },
   "keywords": [
     "react-native",
@@ -24,12 +24,19 @@
     "iot"
   ],
   "authors": [
-    "tadasr"
+    "tadasr", "josectobar"
   ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tadasr/react-native-iot-wifi/issues"
   },
   "homepage": "https://github.com/tadasr/react-native-iot-wifi#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "josectobar"
 }
