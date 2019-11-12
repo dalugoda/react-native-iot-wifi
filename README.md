@@ -2,6 +2,10 @@
 Wifi configuration.
 This library was written to config iot devices. With iOS 11 Apple introduced NEHotspotConfiguration class for wifi configuration. Library supports same functionality on ios and android.
 
+## 1.0.4
+
+wifi connection was dropping after a few seconds after connecting, this seems to occur only to devices using iOS 13. As a fix I changed the configuration.joinOnce = false; for the connect and connectSecure methods this change will maintain the connection to the wifi network even after the app is closed or on the background. this may not be ideal for certain use cases.
+
 ## 1.0.32
 
 * added missing iOS connection error handling.
