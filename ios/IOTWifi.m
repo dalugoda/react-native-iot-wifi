@@ -4,6 +4,20 @@
 
 
 @implementation IOTWifi
+
+    - (NSString *) getWifiSSID {
+        NSString *kSSID = (NSString*) kCNNetworkInfoKeySSID;
+        
+        NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
+        for (NSString *ifnam in ifs) {
+            NSDictionary *info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
+            if (info[kSSID]) {
+                return info[kSSID];
+            }
+        }
+        return nil;
+    }
+
     RCT_EXPORT_MODULE();
     RCT_EXPORT_METHOD(isApiAvailable:(RCTResponseSenderBlock)callback) {
         NSNumber *available = @NO;
@@ -24,21 +38,14 @@
                 if (error != nil) {
                     callback(@[@"Error while configuring WiFi"]);
                 } else {
-                    
-                    NSString *kSSID = (NSString*) kCNNetworkInfoKeySSID;
-                    
-                    NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
-                    for (NSString *ifnam in ifs) {
-                      NSDictionary *info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
-                      if (info[kSSID] == ssid) {
-                        callback(@[[NSNull null]]);
-                        return;
-                      } else {
-                          callback(@[[NSString  stringWithFormat:@"Unable to join %@", ssid]]);
-                        return;
-                      }
-                    }
-
+                  NSString *kSSID = [self getWifiSSID];
+                  if ([kSSID isEqualToString:ssid]) {
+                    callback(@[[NSNull null]]);
+                    return;
+                  } else {
+                      callback(@[[NSString  stringWithFormat:@"Unable to join %@", ssid]]);
+                    return;
+                  }
                 }
             }];
             
@@ -61,20 +68,14 @@
                 if (error != nil) {
                     callback(@[[error localizedDescription]]);
                 } else {
-
-                    NSString *kSSID = (NSString*) kCNNetworkInfoKeySSID;
-                    
-                    NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
-                    for (NSString *ifnam in ifs) {
-                      NSDictionary *info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
-                      if (info[kSSID] == ssid) {
-                        callback(@[[NSNull null]]);
-                        return;
-                      } else {
-                          callback(@[[NSString  stringWithFormat:@"Unable to join %@", ssid]]);
-                        return;
-                      }
-                    }
+                  NSString *kSSID = [self getWifiSSID];
+                  if ([kSSID isEqualToString:ssid]) {
+                    callback(@[[NSNull null]]);
+                    return;
+                  } else {
+                      callback(@[[NSString  stringWithFormat:@"Unable to join %@", ssid]]);
+                    return;
+                  }
                 }
             }];
             
@@ -102,18 +103,11 @@
     
     RCT_REMAP_METHOD(getSSID,
                      callback:(RCTResponseSenderBlock)callback) {
-        NSString *kSSID = (NSString*) kCNNetworkInfoKeySSID;
-
-        NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
-        for (NSString *ifnam in ifs) {
-            NSDictionary *info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
-            NSString *ssid = info[kSSID];
+            NSString *ssid = [self getWifiSSID];
             if (ssid) {
                 callback(@[ssid]);
                 return;
             }
-        }
-
         callback(@[@"Cannot detect SSID"]);
     }
 @end
