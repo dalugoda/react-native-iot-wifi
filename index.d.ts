@@ -1,4 +1,4 @@
-declare module '@josectobar/react-native-iot-wifi' {
+declare module "@josectobar/react-native-iot-wifi" {
   // tslint:disable:no-namespace
   type ConnectArgs =
     | [string, (error: string) => void]
@@ -18,6 +18,7 @@ declare module '@josectobar/react-native-iot-wifi' {
     function connect(...args: ConnectArgs): void;
     function connectSecure(...args: ConnectSecureArgs): void;
     function removeSSID(...args: RemoveConnectArgs): void;
+    function forceWifiUsage(useWifi: boolean): void; //Only available for Android
   }
 
   export default RNWifi;
