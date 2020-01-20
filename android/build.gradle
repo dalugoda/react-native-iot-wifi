@@ -1,23 +1,37 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.2'
+    }
+}
+
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        ndk {
-            abiFilters "armeabi-v7a", "x86"
-        }
-    }
-    lintOptions {
-        warning 'InvalidPackage'
     }
 }
 
+repositories {
+    maven {
+        url "$projectDir/../node_modules/react-native/android"
+    }
+    google()
+    jcenter()
+}
+
 dependencies {
-    implementation 'com.facebook.react:react-native:0.20.1+'
+    //noinspection GradleDynamicVersion
+    implementation 'com.facebook.react:react-native:+'
 }
